@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>展开/收起内容示例</title>
+    <style>
+        .content {
+            display: none;
+        }
+
+        .toggle-button {
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
+    <script>
+        function toggleContent() {
+            var content = document.getElementById("content");
+            var button = document.getElementById("toggle-button");
+            if (content.style.display === "none") {
+                content.style.display = "block";
+                button.textContent = "> 点击收起";
+            } else {
+                content.style.display = "none";
+                button.textContent = "> 点击展开";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="toggle-button" class="toggle-button" onclick="toggleContent()">> 点击展开</div>
+    <div id="content" class="content">
+        <p>这是展开后的内容。你可以在这里放置任何你想展示的内容。</p>
+    </div>
+</body>
+
+</html>

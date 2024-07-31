@@ -1,115 +1,116 @@
-        body,
-        html {
-            margin: 0;
-            background: url('https://www.freeimg.cn/i/2024/07/30/66a8e253e3c8a.jpg');
-        }
+body,
+html {
+    margin: 0;
+    background: url('https://www.freeimg.cn/i/2024/07/30/66a8e253e3c8a.jpg');
+}
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: flex-start;
-            padding: 1% 18%;
-            position: relative;
-        }
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1% 18%;
+    position: relative;
+}
 
-        .content {
-            position: relative;
-            z-index: 1;
-        }
+.content {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
 
-        h1 {
-            font-size: 4em;
-            margin-bottom: 0.2em;
-            color: rgba(255, 255, 255, 0.8)
-        }
+h1 {
+    font-size: 4em;
+    margin-bottom: 0.2em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0em;
+}
 
-        h2 {
-            font-size: 2em;
-            margin-bottom: 0.2em;
-            color: rgba(255, 255, 255, 0.8)
-        }
+h2 {
+    font-size: 2em;
+    margin-bottom: 0.2em;
+    color: rgba(255, 255, 255, 0.8)
+}
 
-        p {
-            font-size: 1.2em;
-            color: rgba(255, 255, 255, 0.884);
-        }
+p {
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.884);
+}
 
-        hr {
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            margin-top: 0.5em;
-            margin-bottom: 2em;
-        }
+hr {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-top: 0.5em;
+}
 
-        .badge-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap
-        }
+.badge-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap
+}
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 3em;
-            }
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3em;
+    }
 
-            p {
-                font-size: 1em;
-            }
+    p {
+        font-size: 1em;
+    }
 
-            body {
-                padding: 5%;
-            }
-        }
+    body {
+        padding: 5%;
+    }
 
-        @font-face {
-            font-family: 'Sarasa Mono SC';
-            src: url('https://cdn.jsdmirror.com/gh/Creeper512/crblog-cdn/fonts/sarasa-mono.woff2') format('woff2');
-            font-weight: 400;
-            font-style: normal;
-        }
+    .footer-info {
+        flex-direction: column;
+    }
+}
 
-        body {
-            font-family: 'Sarasa Mono SC', monospace;
-        }
+@font-face {
+    font-family: 'Sarasa Mono SC';
+    src: url('https://cdn.jsdmirror.com/gh/Creeper512/crblog-cdn/fonts/sarasa-mono.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(16px) brightness(50%);
-            padding: 25px;
-            border-radius: 10px;
-        }
+body {
+    font-family: 'Sarasa Mono SC', monospace;
+}
 
-        .content {
-            flex: 1;
-        }
+.container {
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(16px) brightness(50%);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 5px #1b1b1bc7;
+}
 
-        .footer {
-            padding: 20px;
-            text-align: center;
-        }
+.footer {
+    text-align: center;
+}
 
-        html,
-        body {
-            overflow: auto;
-        }
+html,
+body {
+    overflow: auto;
+}
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
 
-        a {
-            text-decoration: none;
-            color: #4dabf7;
-        }
+a {
+    text-decoration: none;
+    color: #4dabf7;
+}
 
-        a:visited {
-            color: #3bc9db;
-        }
+a:visited {
+    color: #3bc9db;
+}
 
 *::-webkit-scrollbar {
     width: 5px;
@@ -118,4 +119,14 @@
 *::-webkit-scrollbar-thumb {
     background: #b3b3b367;
     border-radius: 5px;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 22px;
+    p {
+        color:#ced4da
+    }
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creeper938的网站</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script async src="https://npm.elemecdn.com/penndu@1.0.0/bsz.js"></script>
     <script type="text/javascript">
         function runtime() {
             X = new Date("07/30/2024 00:00:00");
@@ -19,7 +20,7 @@
             c = (b - B) * 60;
             C = Math.floor((b - B) * 60);
             D = Math.floor((c - C) * 60);
-            span.innerHTML = "本网站己运行: " + A + " 天 " + B + " 小时 " + C + " 分 " + D + " 秒"
+            span.innerHTML = "本站己存活 " + A + " 天 " + B + " 小时 " + C + " 分 " + D + " 秒"
         }
         setInterval(runtime, 1000);
     </script>
@@ -32,18 +33,17 @@
         <div class="content">
             <h1>HELLO</h1>
             <hr>
-            <p>欢迎来到 Creeper938 的个人主页。一个社恐，不喜欢与陌生人交流。Python 初学者，CSS、HTML 小白，这个网站都是拿 ChatGPT 写的然后自己瞎改了一下。本站背景图的 PID 为 <a
+            <p>欢迎来到 Creeper938 的个人主页。一个社恐，不喜欢与陌生人交流，喜欢在如粪坑一般的互联网上找点乐子。住在河北的穷B。Python 初学者，CSS、HTML 小白，这个网站大部分是拿 ChatGPT 写的然后自己瞎改了一下。本站背景图的 PID 为 <a
                     href="https://www.pixiv.net/artworks/120409457">120409457</a>。</p>
+            <p>比较喜欢折腾各种奇奇怪怪的东西，特别喜欢折腾安卓的 ROOT 和模块，所以不能解 BL 锁的手机 / 平板基本不在我的换机考虑范围内。不喜欢玩 FPS 游戏，不太喜欢和别人联机。以前开过一个 Minecraft 服务器，但是已经倒闭了。</p>
             <p>由于我认为低质量内容太多，本站以前的博客已于 2024.07.30 关闭。</p>
-            <p><strong>⚠ 我从来没有让别人攻击过我的网站。如果你发现有人说“求打”然后发了我网站的链接，说明他想要搞我</strong></p>
+            <p style="color:#fa5252">我从来没有让别人攻击过我的网站。如果你发现有人说“求打”然后发了我网站的链接，大概率说明他想要整我。此网站是静态网页且使用 Cloudflare Pages 搭建，基本打不死</p>
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/Phone-OnePlus_Ace_3V-F62432?style=for-the-badge&logo=oneplus">
                 <img src="https://img.shields.io/badge/CPU-AMD_Ryzen_5_4600G-red?style=for-the-badge&logo=amd">
                 <img src="https://img.shields.io/badge/GPU-AMD_Radeon_RX_6400-red?style=for-the-badge&logo=amd">
             </div>
             <h2>/ FIND ME</h2>
-            <p>你可以在以下平台找到我:</p>
-
             <div class="badge-container">
                 <img src="https://img.shields.io/badge/QQ-744198767-blue?style=for-the-badge&logo=tencent-qq">
                 <object
@@ -71,8 +71,12 @@
                     src="https://img.shields.io/badge/OnePoint1-rcc.cnonepoint.com-red?style=for-the-badge&logo=googlechrome">
             </a>
         </div>
+        <hr>
         <div class="footer">
-            <span id="span" style="color:white"></span>
+            <div class="footer-info">
+                <p id="span"></p>
+                <p>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次 | 本站总访客数 <span id="busuanzi_value_site_uv"></span> 人</p>
+            </div>
             <p>Copyright 2021-present Creeper938</p>
             <img src="https://img.shields.io/badge/Powered_by-Cloudflare-orange?style=for-the-badge&logo=cloudflare">
         </div>
