@@ -1,7 +1,7 @@
-body,
-html {
+html, body {
     margin: 0;
-    background: url('https://www.freeimg.cn/i/2024/07/30/66a8e253e3c8a.jpg');
+    background: url('https://www.freeimg.cn/i/2024/07/30/66a8e253e3c8a.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 body {
@@ -67,15 +67,8 @@ hr {
     }
 }
 
-@font-face {
-    font-family: 'Sarasa Mono SC';
-    src: url('https://cdn.jsdmirror.com/gh/Creeper512/crblog-cdn/fonts/sarasa-mono.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
 body {
-    font-family: 'Sarasa Mono SC', monospace;
+    font-family: "LXGW WenKai Lite", sans-serif;
 }
 
 .container {
@@ -129,4 +122,8 @@ a:visited {
     p {
         color:#ced4da
     }
+}
+
+.about-me {
+    line-height: 20px;
 }
