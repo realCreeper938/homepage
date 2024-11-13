@@ -127,3 +127,7 @@ a:visited {
 .about-me {
     line-height: 20px;
 }
+
+li {
+color: white;
+}
