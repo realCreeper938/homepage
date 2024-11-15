@@ -1,7 +1,7 @@
 html,
 body {
     margin: 0;
-    background: url('https://www.helloimg.com/i/2024/11/15/6737161225918.jpg') no-repeat center center fixed;
+    background: url('https://img.picui.cn/free/2024/11/15/673720abf01ba.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -95,7 +95,6 @@ body {
     color: white;
 }
 
-/* 响应式布局 */
 @media (max-width: 1440px) {
     h1 {
         font-size: 3em;
@@ -182,7 +181,8 @@ li {
     color: white;
 }
 
-.aplayer .aplayer-list ol li {
+.aplayer .aplayer-list ol li,
+.aplayer .aplayer-info .aplayer-music .aplayer-title {
     color: black;
 }
 
