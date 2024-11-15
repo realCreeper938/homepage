@@ -1,6 +1,7 @@
-html, body {
+html,
+body {
     margin: 0;
-    background: url('https://www.freeimg.cn/i/2024/07/30/66a8e253e3c8a.jpg') no-repeat center center fixed;
+    background: url('https://www.helloimg.com/i/2024/11/15/6737161225918.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -9,15 +10,10 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 1% 18%;
+    padding: 1% 5%;
     position: relative;
 }
 
-.content {
-    flex: 1;
-    position: relative;
-    z-index: 1;
-}
 
 h1 {
     font-size: 4em;
@@ -73,12 +69,65 @@ body {
 
 .container {
     display: flex;
+    gap: 20px;
+}
+
+.box {
+    display: flex;
+    text-align: left;
     flex-direction: column;
-    backdrop-filter: blur(16px) brightness(50%);
     padding: 25px;
     border-radius: 10px;
+    backdrop-filter: blur(10px) brightness(50%);
     box-shadow: 0px 0px 20px 5px #1b1b1bc7;
+    color: white;
 }
+
+.box_comment {
+    width: 950px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px) brightness(50%);
+    box-shadow: 0px 0px 20px 5px #1b1b1bc7;
+    color: white;
+}
+
+/* 响应式布局 */
+@media (max-width: 1440px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+    body {
+        padding: 0%;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 0;
+        gap: 5px;
+    }
+
+    .box_comment {
+        width: auto;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+    .box {
+        width: auto;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+}
+
 
 .footer {
     text-align: center;
@@ -119,15 +168,29 @@ a:visited {
     justify-content: space-between;
     font-size: 14px;
     line-height: 22px;
+
     p {
-        color:#ced4da
+        color: #ced4da
     }
 }
 
 .about-me {
-    line-height: 20px;
+    line-height: 24px;
 }
 
 li {
-color: white;
+    color: white;
+}
+
+.aplayer .aplayer-list ol li {
+    color: black;
+}
+
+.atk-comment>.atk-main>.atk-footer .atk-actions>span:not(:last-child):not(.atk-hide) {
+    color: #cccccc;
+}
+
+.artalk>.atk-list>.atk-list-header .atk-comment-count,
+.atk-comment>.atk-main>.atk-header .atk-item:not(:last-child) {
+    color: white;
 }
