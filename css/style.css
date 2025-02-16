@@ -198,3 +198,23 @@ li {
 .atk-comment>.atk-main>.atk-header .atk-item:not(:last-child) {
     color: white;
 }
+
+.profile-container {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #ccc; /* 默认头像背景色 */
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+}
