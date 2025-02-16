@@ -202,19 +202,25 @@ li {
 .profile-container {
     display: flex;
     align-items: center;
+    margin-bottom: 22px;
 }
 
 .avatar {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background-color: #ccc; /* 默认头像背景色 */
+    background-color: #ccc;
     background-size: cover;
     background-position: center;
-    margin-right: 10px;
+    margin-right: 18px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
 .name {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: bold;
+    line-height: 24px;
 }
