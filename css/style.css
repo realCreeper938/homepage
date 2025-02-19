@@ -195,6 +195,7 @@ li {
     color: black;
 }
 
+/*
 .atk-comment>.atk-main>.atk-footer .atk-actions>span:not(:last-child):not(.atk-hide) {
     color: #cccccc;
 }
@@ -203,6 +204,7 @@ li {
 .atk-comment>.atk-main>.atk-header .atk-item:not(:last-child) {
     color: white;
 }
+*/
 
 .profile-container {
     display: flex;
