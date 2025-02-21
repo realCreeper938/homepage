@@ -139,6 +139,7 @@ body {
 
 .footer {
     text-align: center;
+    font-size: 14px;
 }
 
 html,
@@ -189,22 +190,6 @@ a:visited {
 li {
     color: white;
 }
-
-.aplayer .aplayer-list ol li,
-.aplayer .aplayer-info .aplayer-music .aplayer-title {
-    color: black;
-}
-
-/*
-.atk-comment>.atk-main>.atk-footer .atk-actions>span:not(:last-child):not(.atk-hide) {
-    color: #cccccc;
-}
-
-.artalk>.atk-list>.atk-list-header .atk-comment-count,
-.atk-comment>.atk-main>.atk-header .atk-item:not(:last-child) {
-    color: white;
-}
-*/
 
 .profile-container {
     display: flex;
