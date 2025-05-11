@@ -7,7 +7,7 @@ body {
     justify-content: flex-start;
     padding: 1% 15%;
     position: relative;
-    background-image: url('https://gcore.jsdelivr.net/gh/Creeper512/homepage/img/background.webp');
+    background-image: url('https://gcore.jsdelivr.net/gh/Creeper512/homepage@0.1/img/background.webp');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -94,11 +94,8 @@ hr {
 }
 
 .box_comment {
-    /* 移除固定宽度 */
     width: 70%;
-    /* 可以设置最大宽度防止在大屏幕上过宽 */
     max-width: 950px;
-    /* 添加左右边距 */
     margin-left: auto;
     margin-right: auto;
     height: max-content;
@@ -112,17 +109,15 @@ hr {
 }
 
 @media (max-width: 1440px) {
-    /* 保持你原有的响应式设计 */
     .box_comment {
         width: auto;
-        max-width: none; /* 在中等屏幕上去掉最大宽度限制 */
+        max-width: none;
         border-radius: 0px;
         box-shadow: none;
     }
 }
 
 @media (max-width: 768px) {
-    /* 在小屏幕上调整内边距 */
     .box_comment {
         padding: 15px;
     }
@@ -235,10 +230,3 @@ li {
     font-weight: bold;
     line-height: 24px;
 }
-
-@font-face {
-    font-family: '寒蝉半圆体';
-    src: url('/chillround.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    }
