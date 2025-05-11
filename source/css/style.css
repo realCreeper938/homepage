@@ -22,8 +22,11 @@ body {
 
 @media (max-width: 768px) {
     #steam-info {
-        width: 320px;
-        height: 120px;
+        width: 280px;
+        height: 105px;
+    }
+    .box {
+        line-height: 24px;
     }
 }
 
