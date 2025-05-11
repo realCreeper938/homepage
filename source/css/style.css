@@ -20,6 +20,13 @@ body {
     color: #e7f5ff;
 }
 
+@media (max-width: 768px) {
+    #steam-info {
+        width: 320px;
+        height: 120px;
+    }
+}
+
 h1 {
     font-size: 4em;
     margin-bottom: 0.2em;
