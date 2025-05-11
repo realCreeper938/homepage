@@ -1,3 +1,4 @@
+@import url("https://fontsapi.zeoseven.com/192/main/result.css");
 
 body {
     display: flex;
@@ -6,8 +7,18 @@ body {
     justify-content: flex-start;
     padding: 1% 15%;
     position: relative;
+    background-image: url('https://gcore.jsdelivr.net/gh/Creeper512/homepage/img/background.webp');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Yozai";
+    font-weight: normal;
 }
 
+#info-highlight {
+    color: #e7f5ff;
+}
 
 h1 {
     font-size: 4em;
@@ -62,10 +73,6 @@ hr {
     }
 }
 
-body {
-    font-family: "LXGW WenKai Lite", sans-serif;
-}
-
 .container {
     display: flex;
     gap: 20px;
@@ -88,7 +95,7 @@ body {
 
 .box_comment {
     /* 移除固定宽度 */
-    width: auto;
+    width: 70%;
     /* 可以设置最大宽度防止在大屏幕上过宽 */
     max-width: 950px;
     /* 添加左右边距 */
@@ -228,3 +235,10 @@ li {
     font-weight: bold;
     line-height: 24px;
 }
+
+@font-face {
+    font-family: '寒蝉半圆体';
+    src: url('/chillround.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    }
