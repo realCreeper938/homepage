@@ -80,7 +80,8 @@
             min-height: 100vh;
             font-family: var(--serif-font);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 17px;
             scroll-behavior: smooth;
         }
 
@@ -705,7 +706,7 @@
                             <img src="${game.images.headerImage}" alt="${game.name}" class="no-filter">
                             <div class="game-overlay">
                                 <div class="game-name">${game.name}</div>
-                                <div class="game-time">${Math.round(game.playtimeForever)}h</div>
+                                <div class="game-time">${Math.round(game.playtimeTwoWeeks)}h / ${Math.round(game.playtimeForever)}h</div>
                             </div>
                         </div>
                     `).join('');
