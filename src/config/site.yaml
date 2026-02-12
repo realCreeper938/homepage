@@ -1,0 +1,80 @@
+# 站点配置
+site:
+  # 页面标题
+  title: "Creeper938's site"
+  # 页面描述
+  description: "欢迎前来拜访 Creeper938 的破烂个人主页"
+  # 作者
+  author: "Creeper938"
+  # 关键词
+  keywords: "creeper938,个人网站,个人网页,个人站点,个人博客,个人主页"
+
+# 导航栏配置
+nav:
+  items:
+    - name: "主页"
+      href: "#"
+      active: true
+      icon: "home"
+    - name: "博客"
+      href: "https://blog.creeper938.top"
+      active: false
+      icon: "pen-tool"
+    - name: "储物间"
+      href: "https://alist.348000.xyz/"
+      active: false
+      icon: "hard-drive"
+
+# 页脚配置
+footer:
+  # 版权年份范围
+  year_start: 2021
+  year_end: 2026
+  # 版权所有者
+  copyright_holder: "Creeper938"
+  # GitHub 源码链接
+  github_link: "https://github.com/realCreeper938/homepage"
+
+# 头像配置
+avatar:
+  # 头像图片链接
+  src: "https://q.qlogo.cn/g?b=qq&nk=2735791311&s=640"
+  # 头像替代文本
+  alt: "Creeper938"
+
+# 友链配置
+friends:
+  - name: "OnePoint1"
+    url: "http://rcc.cnonepoint.com"
+    icon: "link"
+
+# Badge 配置
+badges:
+  # 我的装备
+  equipment:
+    - src: "https://img.shields.io/badge/Phone-OnePlus_Ace_3V-F62432?style=for-the-badge&logo=oneplus"
+      alt: "Phone"
+      link: "https://www.oneplus.com"
+    - src: "https://img.shields.io/badge/Band-Xiaomi_Band_9-FF6900?style=for-the-badge&logo=xiaomi"
+      alt: "Band"
+      link: "https://www.mi.com"
+    - src: "https://img.shields.io/badge/GPU-NVIDIA_GeForce_RTX_5060_Laptop-76B900?style=for-the-badge&logo=nvidia&logoColor=white"
+      alt: "GPU"
+      link: "https://www.nvidia.com"
+    - src: "https://img.shields.io/badge/CPU-AMD_Ryzen_7_H_255-red?style=for-the-badge&logo=amd"
+      alt: "CPU"
+      link: "https://www.amd.com"
+  # 寻找我
+  contact:
+    - src: "https://img.shields.io/badge/BILIBILI-Creeper938-pink?style=for-the-badge&logo=bilibili"
+      alt: "Bilibili"
+      link: "https://space.bilibili.com/492917725"
+    - src: "https://img.shields.io/badge/邮箱-hello@creeper938.top-blue?style=for-the-badge&logo=gmail"
+      alt: "Email"
+      link: "mailto:hello@creeper938.top"
+    - src: "https://img.shields.io/badge/GitHub-realCreeper938-black?style=for-the-badge&logo=github"
+      alt: "Github"
+      link: "https://github.com/realCreeper938"
+    - src: "https://img.shields.io/badge/Telegram-@creeper938__bot-24AAEC?style=for-the-badge&logo=telegram"
+      alt: "Telegram"
+      link: "https://t.me/creeper938_bot"

@@ -9,5 +9,12 @@
     "gulp-clean-css": "^4.3.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-terser": "^2.1.0"
+  },
+  "devDependencies": {
+    "del": "^8.0.1",
+    "html-minifier-terser": "^7.2.0",
+    "marked": "^17.0.2",
+    "through2": "^4.0.2",
+    "yaml": "^2.8.2"
   }
 }

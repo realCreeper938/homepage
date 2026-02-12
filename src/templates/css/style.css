@@ -1,0 +1,222 @@
+@import url("https://fontsapi.zeoseven.com/292/main/result.css");
+
+/* Pace.js 样式微调 */
+.pace {
+    -webkit-pointer-events: none;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.pace-progress {
+    background: #3b82f6;
+    height: 2px;
+}
+
+/* 平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* 延迟动画 */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+
+/* 游戏卡片悬停效果 */
+.game-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+}
+
+.game-card:hover .game-overlay {
+    opacity: 1;
+}
+
+.game-card:hover img {
+    transform: scale(1.05);
+}
+
+/* 导航项下划线动画 */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* 脉冲动画 */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.pulse-ring {
+    animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Toast 动画 */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.toast-enter {
+    animation: slideInRight 0.4s ease-out forwards;
+}
+
+.toast-exit {
+    animation: slideOutRight 0.4s ease-in forwards;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* 暗色模式滚动条 */
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+        background: #475569;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #64748b;
+    }
+}
+
+/* 正文可读性优化 */
+.about-me {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #374151;
+}
+
+.dark .about-me {
+    color: #d1d5db;
+}
+
+.about-me p {
+    margin-bottom: 1.25rem;
+    text-align: justify;
+}
+
+.about-me p:last-child {
+    margin-bottom: 0;
+}
+
+/* 强调文字样式 */
+.about-me em,
+.about-me i {
+    color: #4b5563;
+    font-style: italic;
+}
+
+.dark .about-me em,
+.dark .about-me i {
+    color: #9ca3af;
+}
+
+/* 删除线样式 */
+.about-me del,
+.about-me s {
+    color: #9ca3af;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+.dark .about-me del,
+.dark .about-me s {
+    color: #6b7280;
+}
+
+/* 段落间距优化 */
+.about-me br {
+    display: block;
+    content: "";
+    margin-top: 0.5rem;
+}
+
+/* 选中文字样式 */
+::selection {
+    background: rgba(59, 130, 246, 0.2);
+    color: inherit;
+}
+
+.dark ::selection {
+    background: rgba(96, 165, 250, 0.25);
+}
