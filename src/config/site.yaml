@@ -17,7 +17,7 @@ nav:
       active: true
       icon: "home"
     - name: "博客"
-      href: "https://blog.creeper938.top"
+      href: "https://b.creeper938.top"
       active: false
       icon: "pen-tool"
     - name: "储物间"
