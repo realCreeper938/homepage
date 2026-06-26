@@ -8,29 +8,20 @@ const { minify } = require('html-minifier-terser');
 const through2 = require('through2');
 const cleanCSS = require('gulp-clean-css');
 
+// 默认背景（使用 CSS 动画渐变，不再用静态 SVG）
+const defaultBgDark = 'none';
+const defaultBgLight = 'none';
+
 // 加载 YAML 配置文件
 function loadConfig() {
   const configFile = fs.readFileSync('src/config/site.yaml', 'utf8');
   return yaml.parse(configFile);
 }
 
-// 生成导航栏 HTML
 function generateNavHTML(navConfig) {
   return navConfig.items.map(item => {
-    const iconHtml = item.icon ? `<i data-lucide="${item.icon}" class="w-4 h-4"></i>` : '';
-    if (item.active) {
-      return `<a href="${item.href}" class="flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 text-sm font-semibold text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 shadow-sm rounded-md transition-all">${iconHtml}<span class="hidden md:inline">${item.name}</span></a>`;
-    }
-    return `<a href="${item.href}" class="flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-200/50 dark:hover:bg-slate-700/50 rounded-md transition-all">${iconHtml}<span class="hidden md:inline">${item.name}</span></a>`;
-  }).join('\n                ');
-}
-
-// 生成友链 HTML
-function generateFriendsHTML(friends) {
-  if (!friends || friends.length === 0) return '';
-  return friends.map(friend => {
-    return `<a href="${friend.url}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>${friend.name}</a>`;
-  }).join('\n                        ');
+    return `<a href="${item.href}" rel="me noopener"><i data-feather="${item.icon}" aria-hidden="true"></i><span class="nav-label">${item.name}</span></a>`;
+  }).join('\n            ');
 }
 
 // 生成页脚版权年份 HTML
@@ -44,12 +35,12 @@ function generateFooterYear(footerConfig) {
 // 生成 Badge HTML
 function generateBadgesHTML(badges) {
   return badges.map(badge => {
-    const imgTag = `<img src="${badge.src}" alt="${badge.alt}" class="h-7 rounded-md hover:scale-105 transition-transform">`;
+    const imgTag = `<img src="${badge.src}" alt="${badge.alt}">`;
     if (badge.link) {
-      return `<a href="${badge.link}" target="_blank" rel="noopener noreferrer" class="inline-block">${imgTag}</a>`;
+      return `<a href="${badge.link}" target="_blank" rel="noopener noreferrer" role="listitem">${imgTag}</a>`;
     }
-    return imgTag;
-  }).join('\n                        ');
+    return `<span role="listitem">${imgTag}</span>`;
+  }).join('\n                    ');
 }
 
 // 渲染 Markdown 并生成 HTML 的任务
@@ -73,7 +64,23 @@ function renderMarkdown() {
   finalHtml = finalHtml.replace(/{{site\.title}}/g, config.site.title);
   finalHtml = finalHtml.replace(/{{site\.description}}/g, config.site.description);
   finalHtml = finalHtml.replace(/{{site\.author}}/g, config.site.author);
+  finalHtml = finalHtml.replace(/{{site\.alias}}/g, config.site.alias);
   finalHtml = finalHtml.replace(/{{site\.keywords}}/g, config.site.keywords);
+
+  // 替换背景图片
+  const bgImage = config.site.background_image;
+  if (bgImage) {
+    const bgCSS = `url('${bgImage}')`;
+    finalHtml = finalHtml.replace(/{{site\.background_css}}/g, bgCSS);
+    finalHtml = finalHtml.replace(/{{site\.background_css_light}}/g, bgCSS);
+    finalHtml = finalHtml.replace(/{{site\.background_blur}}/g, 'none');
+    finalHtml = finalHtml.replace(/{{site\.card_background}}/g, 'rgba(0, 0, 0, 0.72)');
+  } else {
+    finalHtml = finalHtml.replace(/{{site\.background_css}}/g, defaultBgDark);
+    finalHtml = finalHtml.replace(/{{site\.background_css_light}}/g, defaultBgLight);
+    finalHtml = finalHtml.replace(/{{site\.background_blur}}/g, 'none');
+    finalHtml = finalHtml.replace(/{{site\.card_background}}/g, 'rgba(0, 0, 0, 0.55)');
+  }
 
   // 替换头像配置
   finalHtml = finalHtml.replace(/{{avatar\.src}}/g, config.avatar.src);
@@ -82,16 +89,12 @@ function renderMarkdown() {
   // 替换导航栏
   finalHtml = finalHtml.replace('{{nav}}', generateNavHTML(config.nav));
 
-  // 替换友链
-  finalHtml = finalHtml.replace('{{friends}}', generateFriendsHTML(config.friends));
-
   // 替换页脚配置
   finalHtml = finalHtml.replace('{{footer.year}}', generateFooterYear(config.footer));
   finalHtml = finalHtml.replace(/{{footer\.copyright_holder}}/g, config.footer.copyright_holder);
   finalHtml = finalHtml.replace(/{{footer\.github_link}}/g, config.footer.github_link);
 
   // 替换 Badge 配置
-  finalHtml = finalHtml.replace('{{badges.equipment}}', generateBadgesHTML(config.badges.equipment));
   finalHtml = finalHtml.replace('{{badges.contact}}', generateBadgesHTML(config.badges.contact));
 
   // 确保 public 目录存在
