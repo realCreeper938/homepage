@@ -344,6 +344,15 @@
       min-width: 0;
     }
 
+    .greeting {
+      font-family: ZSFT-fl, "Arial Narrow", sans-serif;
+      font-size: .875rem;
+      font-weight: 400;
+      letter-spacing: .28em;
+      color: #18d1ff;
+      margin-bottom: .5rem;
+    }
+
     .alias {
       color: #ababab;
       font-size: 1rem;
@@ -1104,6 +1113,7 @@
             <img class="avatar" src="{{avatar.src}}" alt="{{avatar.alt}}" width="176" height="176">
           </div>
           <div class="identity">
+            <p class="greeting">HELLO, I AM</p>
             <h1 id="name-heading" class="cn-title reveal-text">{{site.author}}</h1>
             <div class="title-rule"></div>
             <p class="alias reveal-text">{{site.alias}}</p>
