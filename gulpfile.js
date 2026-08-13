@@ -7,10 +7,14 @@ const { deleteAsync } = require('del');
 const { minify } = require('html-minifier-terser');
 const through2 = require('through2');
 const cleanCSS = require('gulp-clean-css');
+const browserSync = require('browser-sync').create();
 
 // 默认背景（使用 CSS 动画渐变，不再用静态 SVG）
 const defaultBgDark = 'none';
 const defaultBgLight = 'none';
+
+// 默认 favicon（青底 C 字 SVG）
+const defaultFavicon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23000000'/%3E%3Crect x='8' y='8' width='84' height='84' fill='none' stroke='%2318d1ff' stroke-width='6'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial, sans-serif' font-weight='bold' text-anchor='middle' fill='%2318d1ff'%3EC%3C/text%3E%3C/svg%3E";
 
 // 加载 YAML 配置文件
 function loadConfig() {
@@ -19,8 +23,10 @@ function loadConfig() {
 }
 
 function generateNavHTML(navConfig) {
-  return navConfig.items.map(item => {
-    return `<a href="${item.href}" rel="me noopener"><i data-feather="${item.icon}" aria-hidden="true"></i><span class="nav-label">${item.name}</span></a>`;
+  return navConfig.items.map((item, index) => {
+    const num = String(index + 1).padStart(2, '0');
+    const en = item.en || item.name.toUpperCase();
+    return `<a href="${item.href}" rel="me noopener" class="nav-item"><span class="nav-num">${num}</span><span class="nav-label"><span class="nav-en">${en}</span><span class="nav-cn">${item.name}</span></span><i data-feather="${item.icon}" aria-hidden="true"></i></a>`;
   }).join('\n            ');
 }
 
@@ -32,15 +38,23 @@ function generateFooterYear(footerConfig) {
   return `${footerConfig.year_start}-${footerConfig.year_end}`;
 }
 
-// 生成 Badge HTML
-function generateBadgesHTML(badges) {
-  return badges.map(badge => {
+// 生成 Badge 区块 HTML（无配置时不渲染）
+function generateShieldsSection(badges) {
+  const contact = (badges.contact || []).filter(Boolean);
+  if (!contact.length) return '';
+  const items = contact.map(badge => {
     const imgTag = `<img src="${badge.src}" alt="${badge.alt}">`;
     if (badge.link) {
       return `<a href="${badge.link}" target="_blank" rel="noopener noreferrer" role="listitem">${imgTag}</a>`;
     }
     return `<span role="listitem">${imgTag}</span>`;
-  }).join('\n                    ');
+  }).join('\n              ');
+  return `<section class="shields-section" aria-label="Contact Me">
+          <h2>Contact Me</h2>
+          <div class="shields-grid" role="list">
+            ${items}
+          </div>
+        </section>`;
 }
 
 // 渲染 Markdown 并生成 HTML 的任务
@@ -82,6 +96,9 @@ function renderMarkdown() {
     finalHtml = finalHtml.replace(/{{site\.card_background}}/g, 'rgba(0, 0, 0, 0.55)');
   }
 
+  // 替换 favicon（未配置时使用默认 SVG）
+  finalHtml = finalHtml.replace(/{{site\.favicon}}/g, config.site.favicon || defaultFavicon);
+
   // 替换头像配置
   finalHtml = finalHtml.replace(/{{avatar\.src}}/g, config.avatar.src);
   finalHtml = finalHtml.replace(/{{avatar\.alt}}/g, config.avatar.alt);
@@ -95,7 +112,7 @@ function renderMarkdown() {
   finalHtml = finalHtml.replace(/{{footer\.github_link}}/g, config.footer.github_link);
 
   // 替换 Badge 配置
-  finalHtml = finalHtml.replace('{{badges.contact}}', generateBadgesHTML(config.badges.contact));
+  finalHtml = finalHtml.replace('{{shields_section}}', generateShieldsSection(config.badges));
 
   // 确保 public 目录存在
   if (!fs.existsSync('public')) {
@@ -117,6 +134,14 @@ gulp.task('clean', function() {
 gulp.task('copy404', function() {
   return gulp.src('src/templates/404.html')
     .pipe(gulp.dest('public'));
+});
+
+// 复制静态资源（favicon 等）到 public
+gulp.task('copyAssets', function(done) {
+  const files = fs.readdirSync('src').filter(f =>
+    /\.(png|ico|svg|jpg|jpeg|webp|avif)$/i.test(f));
+  files.forEach(f => fs.copyFileSync(path.join('src', f), path.join('public', f)));
+  done();
 });
 
 // HTML压缩配置 - 使用 html-minifier-terser（支持ES6+）
@@ -174,17 +199,53 @@ function minifyCSS() {
 gulp.task('default', gulp.series(
   'clean',
   renderMarkdown,
-  gulp.parallel(minifyHTML, minifyCSS, 'copy404'),
+  gulp.parallel(minifyHTML, minifyCSS, 'copy404', 'copyAssets'),
   minifyGeneratedHTML
 ));
+
+// 构建站点（不清理 public）
+const buildSite = gulp.series(
+  renderMarkdown,
+  gulp.parallel(minifyHTML, minifyCSS, 'copy404', 'copyAssets'),
+  minifyGeneratedHTML
+);
+
+// 启动本地预览服务器
+gulp.task('serve', function(done) {
+  browserSync.init({
+    server: { baseDir: 'public' },
+    open: false,
+    notify: false
+  });
+  done();
+});
+
+// 监听源码变化并自动重建、刷新
+gulp.task('watch', function() {
+  const reload = function(done) {
+    browserSync.reload();
+    done();
+  };
+  gulp.watch([
+    'src/config/site.yaml',
+    'src/content/**/*.md',
+    'src/templates/index.html',
+    'src/templates/404.html'
+  ], gulp.series(buildSite, reload));
+  gulp.watch('src/templates/css/**/*.css', gulp.series(minifyCSS, reload));
+});
+
+// 开发任务：构建 + 启动预览服务器 + 监听变化
+gulp.task('dev', gulp.series('clean', buildSite, 'serve', 'watch'));
 
 // 导出任务供单独使用
 exports.renderMarkdown = renderMarkdown;
 exports.minifyHTML = minifyHTML;
 exports.minifyCSS = minifyCSS;
+exports.dev = gulp.series('clean', buildSite, 'serve', 'watch');
 exports.default = gulp.series(
   'clean',
   renderMarkdown,
-  gulp.parallel(minifyHTML, minifyCSS, 'copy404'),
+  gulp.parallel(minifyHTML, minifyCSS, 'copy404', 'copyAssets'),
   minifyGeneratedHTML
 );
