@@ -599,6 +599,20 @@
       padding: 0 2rem 0 2.5rem;
     }
 
+    .btn-comments {
+      flex: 0 0 auto;
+      width: 3.75rem;
+      padding: 0;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .btn-comments .btn-icon {
+      width: 1.4rem;
+      height: 1.4rem;
+      stroke-width: 1.6;
+    }
+
     .action-row {
       position: relative;
       z-index: 1;
@@ -1391,8 +1405,9 @@
 
       .btn-comments {
         flex: 0 0 auto;
-        padding: 0 1.5rem;
-        gap: 1rem;
+        width: 3.75rem;
+        padding: 0;
+        justify-content: center;
       }
 
       .page-2 .topline {
@@ -1490,10 +1505,7 @@
             </svg>
           </button>
           <button class="btn gray btn-comments" id="btn-comments" aria-label="打开留言板">
-            <span class="btn-text"><span class="cn">留言</span><span class="en">COMMENTS</span></span>
-            <svg class="arrow" viewBox="0 0 7 15" aria-hidden="true">
-              <path d="M1 1l5 6.5L1 14" stroke="currentColor" fill="none" stroke-width="1.5" />
-            </svg>
+            <i data-feather="message-circle" class="btn-icon" aria-hidden="true"></i>
           </button>
         </div>
       </section>
