@@ -18,8 +18,8 @@
   <meta name="twitter:title" content="{{site.author}} — {{site.title}}">
   <meta name="twitter:description" content="{{site.description}}">
   <meta name="robots" content="index, follow">
-  <link href="https://fontsapi.zeoseven.com/300/main/result.css" onload="this.rel='stylesheet'" rel="preload" as="style" crossorigin />
-  <noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/300/main/result.css" /></noscript>
+<link href="https://fontsapi.zeoseven.com/226/main/result.css" onload="this.rel='stylesheet'" rel="preload" as="style" crossorigin />
+<noscript><link rel="stylesheet" href="https://fontsapi.zeoseven.com/226/main/result.css" /></noscript>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -76,7 +76,7 @@
       background: #000;
       color: #fff;
       overflow: hidden;
-      font-family: "Chill G Sans Medium", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: "LXGW XiHei CL", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -209,6 +209,7 @@
     }
 
     .cn-title {
+      font-family: ZSFT-fl, "Arial Narrow", sans-serif;
       font-size: 3.5rem;
       font-weight: 700;
       letter-spacing: .08em;
@@ -801,6 +802,338 @@
       background: #fff;
     }
 
+    /* ── 留言板面板 ── */
+    .comments-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 49;
+      background: rgba(0, 0, 0, .6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+    }
+
+    .comments-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .comments-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 32rem;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      background: #000;
+      border-left: 1px solid hsla(0, 0%, 100%, .3);
+      transform: translateX(100%);
+      transition: transform .45s cubic-bezier(.22, .8, .3, 1);
+    }
+
+    .comments-panel.open {
+      transform: translateX(0);
+    }
+
+    .comments-panel-head {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-shrink: 0;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid hsla(0, 0%, 100%, .3);
+    }
+
+    .comments-close {
+      margin-left: auto;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: 1px solid hsla(0, 0%, 100%, .3);
+      background: transparent;
+      color: #ababab;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color .2s, border-color .2s, background-color .2s;
+    }
+
+    .comments-close:hover {
+      color: #18d1ff;
+      border-color: #18d1ff;
+      background: rgba(24, 209, 255, .08);
+    }
+
+    .comments-panel-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 1.5rem;
+      font-size: .875rem;
+      line-height: 1.8;
+      color: #d2d2d2;
+    }
+
+    .comments-panel-body::-webkit-scrollbar {
+      width: .25rem;
+    }
+
+    .comments-panel-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .comments-panel-body::-webkit-scrollbar-thumb {
+      background: #18d1ff;
+    }
+
+    .comments-panel-body::-webkit-scrollbar-thumb:hover {
+      background: #fff;
+    }
+
+    .comments-panel-body .twikoo .tk-comments {
+      color: #d2d2d2;
+      font-size: .875rem;
+      line-height: 1.8;
+      font-family: inherit;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-avatar-img {
+      border-radius: 0;
+      background: #1d1f20;
+    }
+
+    /* ── 输入区 ── */
+    .comments-panel-body .twikoo .tk-comments .tk-submit textarea {
+      background: #0a0a0a;
+      border: 1px solid hsla(0, 0%, 100%, .3);
+      color: #fff;
+      border-radius: 0;
+      font-family: inherit;
+      transition: border-color .2s;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-submit textarea:focus {
+      border-color: #18d1ff;
+      outline: none;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-meta-input .el-input {
+      border-radius: 0;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-meta-input {
+      margin-bottom: 1.25rem;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-meta-input .el-input__inner {
+      background: #0a0a0a;
+      border: 1px solid hsla(0, 0%, 100%, .3);
+      border-radius: 0;
+      color: #fff;
+      font-family: inherit;
+      transition: border-color .2s;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-meta-input .el-input__inner:focus {
+      border-color: #18d1ff;
+      outline: none;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-meta-input .el-input-group__prepend {
+      background: #1d1f20;
+      border: 1px solid hsla(0, 0%, 100%, .3);
+      border-right: 0;
+      border-radius: 0;
+      color: #ababab;
+      font-family: inherit;
+    }
+
+    /* ── 提交按钮 ── */
+    .comments-panel-body .twikoo .tk-comments .tk-submit-action-icon {
+      background: transparent;
+      color: #585858;
+      border: 0;
+      border-radius: 0;
+      font-family: inherit;
+      font-weight: 700;
+      line-height: 1;
+      transition: color .2s, background-color .2s;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-submit-action-icon:hover {
+      color: #18d1ff;
+      background: rgba(24, 209, 255, .08);
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-send.el-button {
+      background: #18d1ff;
+      border-color: #18d1ff;
+      border-radius: 0;
+      color: #000;
+      font-family: inherit;
+      font-weight: 700;
+      letter-spacing: .1em;
+      transition: background-color .2s, color .2s, border-color .2s;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-send.el-button:hover {
+      background: #fff;
+      border-color: #fff;
+      color: #000;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-send.el-button.is-disabled,
+    .comments-panel-body .twikoo .tk-comments .tk-send.el-button.is-disabled:hover {
+      background: hsla(0, 0%, 100%, .12);
+      border-color: hsla(0, 0%, 100%, .12);
+      color: #585858;
+      cursor: not-allowed;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-preview.el-button {
+      background: transparent;
+      border: 1px solid hsla(0, 0%, 100%, .3);
+      border-radius: 0;
+      color: #ababab;
+      font-family: inherit;
+      transition: color .2s, border-color .2s, background-color .2s;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-preview.el-button:hover {
+      border-color: #18d1ff;
+      color: #18d1ff;
+      background: rgba(24, 209, 255, .08);
+    }
+
+    /* ── 元信息 / 操作 ── */
+    .comments-panel-body .twikoo .tk-comments .tk-row-actions button,
+    .comments-panel-body .twikoo .tk-comments .tk-meta,
+    .comments-panel-body .twikoo .tk-comments .tk-time {
+      color: #ababab;
+      border-radius: 0;
+      font-family: inherit;
+      background: transparent;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-row-actions button:hover,
+    .comments-panel-body .twikoo .tk-comments .tk-meta .tk-nick:hover {
+      color: #18d1ff;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-row-actions button,
+    .comments-panel-body .twikoo .tk-comments .tk-row-actions button.el-button {
+      border: 0;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-comment {
+      border-bottom: 1px solid hsla(0, 0%, 100%, .12);
+      padding: 1.5rem 0;
+      margin: 0;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-comment:first-of-type {
+      padding-top: .5rem;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-comments-container {
+      margin-top: 1.5rem;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-comments-title {
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: .1em;
+      margin-bottom: 1rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid hsla(0, 0%, 100%, .3);
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-content,
+    .comments-panel-body .twikoo .tk-comments .tk-comments-container .tk-content {
+      color: #d2d2d2;
+      margin-top: 1rem;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-row.actions {
+      margin-top: 1.25rem;
+    }
+
+    .comments-panel-body .twikoo .tk-comments a {
+      color: #18d1ff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(24, 209, 255, .4);
+    }
+
+    .comments-panel-body .twikoo .tk-comments a:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    /* ── 搜索框 ── */
+    .comments-panel-body .twikoo .tk-comments .tk-comments-search .el-input__inner {
+      background: #0a0a0a;
+      border: 1px solid hsla(0, 0%, 100%, .3);
+      border-radius: 0;
+      color: #fff;
+      font-family: inherit;
+      transition: border-color .2s;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-comments-search .el-input__inner:focus {
+      border-color: #18d1ff;
+      outline: none;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-comments-search .el-button {
+      background: transparent;
+      border: 1px solid hsla(0, 0%, 100%, .3);
+      border-radius: 0;
+      color: #ababab;
+      font-family: inherit;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-comments-search .el-button:hover {
+      border-color: #18d1ff;
+      color: #18d1ff;
+    }
+
+    /* ── 空状态 ── */
+    .comments-panel-body .twikoo .tk-comments .tk-comments-no {
+      color: #585858;
+    }
+
+    /* ── 表情面板 ── */
+    .comments-panel-body .twikoo .tk-comments .OwO-body {
+      background: #0a0a0a;
+      border: 1px solid hsla(0, 0%, 100%, .2);
+      border-radius: 0;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .OwO-items {
+      background: transparent;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .OwO-item:hover {
+      background: rgba(24, 209, 255, .15);
+    }
+
+    .comments-panel-body .twikoo .tk-comments .OwO-logo,
+    .comments-panel-body .twikoo .tk-comments .tk-submit-action-icon.OwO {
+      border-radius: 0;
+    }
+
+    .comments-panel-body .twikoo .tk-comments .tk-footer,
+    .comments-panel-body .twikoo .tk-comments .tk-footer a {
+      color: #585858;
+    }
+
     /* ── 页脚 ── */
     .site-footer {
       position: absolute;
@@ -1031,7 +1364,7 @@
       /* 按钮加高，主按钮拉满宽度 */
       .btn {
         height: 3.75rem;
-        padding: 0 2rem;
+        padding: 0 1.25rem;
       }
 
       .btn .cn {
@@ -1049,10 +1382,17 @@
 
       .action-row {
         margin-top: 1.5rem;
+        gap: 1rem;
       }
 
       .btn.primary {
         flex: 1;
+      }
+
+      .btn-comments {
+        flex: 0 0 auto;
+        padding: 0 1.5rem;
+        gap: 1rem;
       }
 
       .page-2 .topline {
@@ -1062,6 +1402,22 @@
       .content {
         font-size: 1.05rem;
         padding-right: 1rem;
+      }
+
+      /* 留言板面板：移动端全屏 */
+      .comments-panel {
+        width: 100%;
+        border-left: 0;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .comments-panel-head {
+        padding: calc(.75rem + env(safe-area-inset-top)) 1rem .75rem;
+      }
+
+      .comments-panel-body {
+        padding: 1rem;
       }
 
       /* 页脚跟随留白框收窄 */
@@ -1133,6 +1489,12 @@
               <path d="M1 1l5 6.5L1 14" stroke="currentColor" fill="none" stroke-width="1.5" />
             </svg>
           </button>
+          <button class="btn gray btn-comments" id="btn-comments" aria-label="打开留言板">
+            <span class="btn-text"><span class="cn">留言</span><span class="en">COMMENTS</span></span>
+            <svg class="arrow" viewBox="0 0 7 15" aria-hidden="true">
+              <path d="M1 1l5 6.5L1 14" stroke="currentColor" fill="none" stroke-width="1.5" />
+            </svg>
+          </button>
         </div>
       </section>
 
@@ -1161,7 +1523,26 @@
     </footer>
   </div>
 
+  <div class="comments-backdrop" id="comments-backdrop" aria-hidden="true"></div>
+  <aside class="comments-panel" id="comments-panel" aria-label="留言板" aria-hidden="true">
+    <div class="comments-panel-head">
+      <span class="eyebrow">COMMENTS ://</span>
+      <span class="topline-rule"></span>
+      <button class="comments-close" id="comments-close" aria-label="关闭留言板">✕</button>
+    </div>
+    <div class="comments-panel-body">
+      <div id="tcomment"></div>
+    </div>
+  </aside>
+
   <script src="https://cdn.jsdmirror.com/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="https://cdn.jsdmirror.cn/npm/twikoo@1.7.19/dist/twikoo.min.js"></script>
+  <script>
+    twikoo.init({
+      envId: 'https://c.creeper938.top',
+      el: '#tcomment',
+    })
+  </script>
   <script>(function () {
       if (window.feather) { feather.replace({ class: 'icon' }); }
 
@@ -1203,6 +1584,28 @@
       });
       document.getElementById('btn-back').addEventListener('click', function () {
         stage.classList.remove('flipped');
+      });
+
+      /* 留言板面板 */
+      var commentsPanel = document.getElementById('comments-panel');
+      var commentsBackdrop = document.getElementById('comments-backdrop');
+      function openComments() {
+        commentsPanel.classList.add('open');
+        commentsBackdrop.classList.add('open');
+        commentsPanel.setAttribute('aria-hidden', 'false');
+        commentsBackdrop.setAttribute('aria-hidden', 'false');
+      }
+      function closeComments() {
+        commentsPanel.classList.remove('open');
+        commentsBackdrop.classList.remove('open');
+        commentsPanel.setAttribute('aria-hidden', 'true');
+        commentsBackdrop.setAttribute('aria-hidden', 'true');
+      }
+      document.getElementById('btn-comments').addEventListener('click', openComments);
+      document.getElementById('comments-close').addEventListener('click', closeComments);
+      commentsBackdrop.addEventListener('click', closeComments);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { closeComments(); }
       });
 
       /* 背景网格光晕跟随 */
