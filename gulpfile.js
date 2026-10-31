@@ -141,6 +141,10 @@ gulp.task('copyAssets', function(done) {
   const files = fs.readdirSync('src').filter(f =>
     /\.(png|ico|svg|jpg|jpeg|webp|avif)$/i.test(f));
   files.forEach(f => fs.copyFileSync(path.join('src', f), path.join('public', f)));
+  // 项目根目录的 assets/（字体等）整体复制，保持 /assets/* 的访问路径
+  if (fs.existsSync('assets')) {
+    fs.cpSync('assets', path.join('public', 'assets'), { recursive: true });
+  }
   done();
 });
 
